@@ -22,18 +22,30 @@ def hello_world():
 
 # endpoints
 
-@app.route('/api/ixids')
-def ixids():
-# resp: {"data": <lista dos identificadores dos IXPs>}
-    return '/api/ixids'
+@app.route('/api/ix')
+def ix():
+    with open(ixfile) as ix:
+        ix_file = json.load(ix)
+        ix_data = ix_file['data']
+    return json.dumps({"data": ix_data})
 
-@app.route('/api/ixnets/{ix_id}')
-def ix_id():
-# resp: {"data": <lista dos identificadores das redes do IXP identificado por 'ix_id'>}
-    return '/api/ixids'
+@app.route('/api/ixnets/<ix_id>')
+def ixnets(ix_id):
+    with open(netixlanfile) as netix:
+        netixlan_file = json.load(netix)
+        all_net_ids = []
+        for net in netixlan_file['data']:
+            if net['ix_id'] == int(ix_id):
+                if(net['net_id'] not in all_net_ids):
+                    all_net_ids.append(net['net_id'])
+    return json.dumps({"data": all_net_ids})
 
-@app.route('/api/netname/{net_id}')
-def net_id():
- 
-# resp: {"data": <nome da rede identificada por 'net_id'>}
-    return '/api/ixids'
+@app.route('/api/netname/<net_id>')
+def netname(net_id):
+    with open(netfile) as nets:
+        net_file = json.load(nets)
+        for net in net_file['data']:
+            if net['id'] == int(net_id):
+                return json.dumps({"data": net['name']})
+
+app.run(host='0.0.0.0', port=port)
