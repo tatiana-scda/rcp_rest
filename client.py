@@ -3,8 +3,6 @@
 from __future__ import print_function
 import socket, json, sys
 
-# python client.py IP:port analysis
-
 ip_port       = sys.argv[1]
 analysis      = sys.argv[2]
 

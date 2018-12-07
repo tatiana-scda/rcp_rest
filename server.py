@@ -1,10 +1,5 @@
 #!/users/zireael/anaconda3/bin/python
 
-#./server port Netfile Ixfile Netixlanfile
-#Onde [port] é o porto no qual o servidor receberá mensagens, [Netfile] é o caminho do arquivo
-#de redes, [Ixfile] é o caminho do arquivo de IXPs e [Netixlanfile] é o caminho do arquivo de
-#associações.
-
 from flask import Flask
 import sys, json
 
@@ -15,10 +10,14 @@ netixlanfile   = sys.argv[4]
 
 app = Flask(__name__)
 
-# test endpoint
-@app.route('/')
+# test endpoints
+@app.route('/api')
 def hello_world():
-    return 'Run Forest, run! Just kidding, API is working'
+    return 'Don\'t panic! API is working'
+
+@app.route('/api/42')
+def universe_answer():
+    return 'The answer to the ultimate question of life, the universe and everything is ' + str(ord('*'))
 
 # endpoints
 
