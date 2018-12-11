@@ -1,4 +1,7 @@
 #!/users/zireael/anaconda3/bin/python
+# -*- coding: utf-8 -*-
+
+# #!/usr/bin/python
 
 from flask import Flask
 import sys, json
@@ -10,14 +13,10 @@ netixlanfile   = sys.argv[4]
 
 app = Flask(__name__)
 
-# test endpoints
-@app.route('/api')
+# test endpoint
+@app.route('/')
 def hello_world():
-    return 'Don\'t panic! API is working'
-
-@app.route('/api/42')
-def universe_answer():
-    return 'The answer to the ultimate question of life, the universe and everything is ' + str(ord('*'))
+    return 'Run Forest, run! Just kidding, API is working'
 
 # endpoints
 

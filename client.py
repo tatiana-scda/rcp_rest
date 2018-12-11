@@ -1,7 +1,12 @@
 #!/users/zireael/anaconda3/bin/python
+# -*- coding: utf-8 -*-
+
+# #!/usr/bin/python
 
 from __future__ import print_function
 import socket, json, sys
+
+# python client.py IP:port analysis
 
 ip_port       = sys.argv[1]
 analysis      = sys.argv[2]
@@ -57,4 +62,3 @@ if __name__ == "__main__":
             ixnets = data_setting('/api/ixnets/'+ str(ix['id']), HOST, PORT)
             size = len(ixnets['data'])
             print(str(ix['id']) + '\t' + ix['name'] + '\t' + str(size))
-
